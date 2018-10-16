@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Football.Api.Models;
 using Football.Core.Data;
-using Football.Data.InMemory;
+using Football.Data.EntityFramework;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +13,8 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
+using Football.Data.EntityFramework.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Football.Api
 {
@@ -31,6 +33,8 @@ namespace Football.Api
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<FootballQuery>();
             services.AddTransient<IFootballPlayerRepository, FootballPlayerRepository>();
+            services.AddDbContext<FootballContext>(options =>
+                options.UseSqlServer(Configuration["ConnectionStrings:FootballDatabaseConnection"]));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
