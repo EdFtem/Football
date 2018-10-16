@@ -1,20 +1,17 @@
-﻿using GraphQL.Types;
-using Football.Core.Models;
+﻿using Football.Core.Data;
+using GraphQL.Types;
 
 namespace Football.Api.Models
 {
     public class FootballQuery : ObjectGraphType
     {
-        public FootballQuery()
+        private IFootballPlayerRepository _footballPlayer { get; set; }
+
+        public FootballQuery(IFootballPlayerRepository _footballPlayer)
         {
             Field<FootballPlayerType>(
                 "player", 
-                resolve: context => new FootballPlayer {
-                    Id = 1,
-                    FirstName = "Eduard",
-                    SecondName = "Ftemov",
-                    Age = 21
-                });
+                resolve: context => _footballPlayer.Get(1));
         }
     }
 }

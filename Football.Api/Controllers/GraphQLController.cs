@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Football.Api.Models;
+using Football.Data.InMemory;
 using GraphQL;
 using GraphQL.Types;
 
@@ -14,10 +15,17 @@ namespace Football.Api.Controllers
     [ApiController]
     public class GraphQLController : ControllerBase
     {
+        private FootballQuery _footballQuery { get; set; }
+
+        public GraphQLController(FootballQuery footballQuery)
+        {
+            _footballQuery = footballQuery;
+        }
+
         [HttpPost]
         public async Task<IActionResult> Post([FromBody] GraphQLQuery query)
         {
-            var schema = new Schema { Query = new FootballQuery() };
+            var schema = new Schema { Query = _footballQuery };
 
             var result = await new DocumentExecuter().ExecuteAsync(_ =>
             {
