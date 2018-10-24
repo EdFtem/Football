@@ -1,4 +1,5 @@
-﻿using Football.Core.Data;
+﻿using System;
+using Football.Core.Data;
 using GraphQL.Types;
 
 namespace Football.Api.Models
@@ -10,8 +11,13 @@ namespace Football.Api.Models
         public FootballQuery(IFootballPlayerRepository _footballPlayer)
         {
             Field<FootballPlayerType>(
-                "player", 
-                resolve: context => _footballPlayer.Get(1));
+                "player",
+                arguments: new QueryArguments(new QueryArgument<IdGraphType>{ Name = "id"}),
+                resolve: context =>
+                {
+                    var id = context.GetArgument<string>("id");
+                    return _footballPlayer.Get(Int32.Parse(id));
+                });
         }
     }
 }
