@@ -10,6 +10,6 @@
 
         public FootballCoach FootballCoach { get; set; }
 
-        public FootballStadiums HomeStadium { get; set; }
+        public FootballStadiums FootballStadiums { get; set; }
     }
 }

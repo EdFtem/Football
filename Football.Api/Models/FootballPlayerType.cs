@@ -11,6 +11,7 @@ namespace Football.Api.Models
             Field(player => player.FirstName, nullable: true).Description("The first name of the player.");
             Field(player => player.SecondName, nullable: true).Description("The second name of the player.");
             Field(player => player.Age, nullable: true).Description("The age of the player.");
+            Field<FootballTeamType, FootballTeam>().Name("footballTeam");           
         }
     }
 }

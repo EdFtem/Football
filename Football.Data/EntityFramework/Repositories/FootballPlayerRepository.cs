@@ -20,7 +20,13 @@ namespace Football.Data.EntityFramework.Repositories
 
         public Task<FootballPlayer> Get(int id)
         {
-            return _db.FootballPlayers.FirstOrDefaultAsync(footballPlayer => footballPlayer.Id == id);
+            return 
+            _db.FootballPlayers
+            .Include(player => player.FootballTeam)
+            .ThenInclude(team => team.FootballCoach)
+            .Include(player => player.FootballTeam)
+            .ThenInclude(team => team.FootballStadiums)
+            .FirstOrDefaultAsync(player => player.Id == id);
         }
     }
 }
