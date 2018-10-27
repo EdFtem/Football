@@ -1,6 +1,6 @@
 ﻿namespace Football.Core.Models
 {
-    public class FootballPlayer
+    public class FootballCoach
     {
         public int Id { get; set; }
 
@@ -10,8 +10,6 @@
 
         public int Age { get; set; }
 
-        public int PlayerNumber { get; set; }
-
-        public FootballTeam FootballTeam { get; set; }
+        public int Rating { get; set; }
     }
 }

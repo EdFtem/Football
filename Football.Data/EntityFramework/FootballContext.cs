@@ -10,6 +10,12 @@ namespace Football.Data.EntityFramework
     {
         public DbSet<FootballPlayer> FootballPlayers { get; set; }
 
+        public DbSet<FootballTeam> FootballTeams { get; set; }
+
+        public DbSet<FootballCoach> FootballCoaches { get; set; }
+
+        public DbSet<FootballStadiums> FootballStadiums { get; set; }
+
         public FootballContext(DbContextOptions options) : base(options)
         {
             Database.EnsureCreated();

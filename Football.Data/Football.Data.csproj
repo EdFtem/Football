@@ -13,4 +13,8 @@
     <ProjectReference Include="..\Football.Core\Football.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Scripts\" />
+  </ItemGroup>
+
 </Project>
