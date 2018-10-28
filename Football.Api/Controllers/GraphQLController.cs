@@ -31,12 +31,13 @@ namespace Football.Api.Controllers
             {
                 _.Schema = schema;
                 _.Query = query.Query;
+                _.ComplexityConfiguration = new ComplexityConfiguration { MaxDepth = 4 };
 
             }).ConfigureAwait(false);
 
             if (result.Errors?.Count > 0)
             {
-                return BadRequest();
+                return BadRequest(result.Errors);
             }
 
             return Ok(result);
