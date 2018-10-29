@@ -32,6 +32,7 @@ namespace Football.Api
         {
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
             services.AddTransient<FootballQuery>();
+            services.AddTransient<FootballMutation>();
             services.AddTransient<IFootballPlayerRepository, FootballPlayerRepository>();
             services.AddDbContext<FootballContext>(options =>
                 options.UseSqlServer(Configuration["ConnectionStrings:FootballDatabaseConnection"]));
@@ -50,6 +51,7 @@ namespace Football.Api
             }
             
             app.UseHttpsRedirection();
+            app.UseStaticFiles();
             app.UseMvc();
         }
     }

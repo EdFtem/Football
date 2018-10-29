@@ -6,7 +6,7 @@ using Football.Core.Models;
 
 namespace Football.Data.InMemory
 {
-    public class FootballPlayerRepository : IFootballPlayerRepository
+    public class FootballPlayerRepository
     {
         private List<FootballPlayer> _footballPlayers = new List<FootballPlayer>()
         {

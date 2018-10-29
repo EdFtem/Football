@@ -28,5 +28,11 @@ namespace Football.Data.EntityFramework.Repositories
             .ThenInclude(team => team.FootballStadiums)
             .FirstOrDefaultAsync(player => player.Id == id);
         }
+
+        public FootballCoach AddCoach(FootballCoach coach){
+            _db.FootballCoaches.AddAsync(coach);
+            _db.SaveChanges();
+            return coach;
+        }
     }
 }
